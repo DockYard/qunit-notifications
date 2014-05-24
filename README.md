@@ -20,9 +20,13 @@ QUnit.notifications({
 
 ### Options
 
-* `icons` - url to `passed` and `failed` images for use in the notification
+#### `icons`
 
-##### Example
+URL to `passed` and `failed` images for use in the notification
+
+*Default*: `{}`
+
+Example:
 
 ```javascript
 QUnit.notifications({
@@ -33,11 +37,13 @@ QUnit.notifications({
 });
 ```
 
-* `timeout` - time in miliseconds for notification to disappear
+#### `timeout`
 
-Default: `4000`
+Time in miliseconds for notification to disappear
 
-#### Example
+*Default*: `4000`
+
+Example:
 
 ```javascript
 QUnit.notifications({
@@ -45,11 +51,13 @@ QUnit.notifications({
 });
 ```
 
-* `titles` - customize the notification titles
+#### `titles`
 
-Default: `{passed: 'Passed!', failed: 'Failed!'}`
+Customize the notification titles
 
-#### Example
+*Default*: `{passed: 'Passed!', failed: 'Failed!'}`
+
+Example:
 
 ```javascript
 QUnit.notifications({
@@ -60,17 +68,19 @@ QUnit.notifications({
 });
 ```
 
-* `bodies` - customize the notification bodies. Will substitue from the notification details object.
+#### `bodies`
 
-Default: `{ passed: '{{passed}} of {{total}} passed', failed: '{{passed}} passed. {{failed}} failed.' }`
+Customize the notification bodies. Will substitue from the notification details object.
 
-#### Example
+*Default*: `{ passed: '{{passed}} of {{total}} passed', failed: '{{passed}} passed. {{failed}} failed.' }`
+
+Example:
 
 ```javascript
 QUnit.notifications({
   bodies: {
     passed: '{{passed}} of {{total}} passed in {{runtime}}ms',
-    failed: '{{failed}} of {{total}} failed in {{{runtime}}ms''
+    failed: '{{failed}} of {{total}} failed in {{{runtime}}ms'
   }
 });
 ```
