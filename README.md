@@ -1,5 +1,25 @@
 # QUnit Notifications
 
+## About
+
+Adds [Web Notification](http://www.w3.org/TR/notifications) support to your Qunit test suite
+
+A new `Notifications` checkbox will be added to the QUnit toolbar
+
+![checkbox](http://i.imgur.com/fALfiQF.png)
+
+And after the tests complete a notification will appear with some
+information on the state of the test suite:
+
+![state](http://i.imgur.com/JGNgoOu.png)
+
+Notifications are off by default, and **will not appear if your browser
+does not support Web Notifications**
+
+They are best used when you do not want to keep switching back to your
+browser to see the result of the test suite. Stay in your favorite
+development environment and keep TDDing!
+
 ## Usage
 
 ```javascript
@@ -70,7 +90,7 @@ QUnit.notifications({
 
 #### `bodies`
 
-Customize the notification bodies. Will substitue from the notification details object.
+Customize the notification bodies. Will substitue from [QUnit's test suite details object](http://api.qunitjs.com/QUnit.done).
 
 *Default*: `{ passed: '{{passed}} of {{total}} passed', failed: '{{passed}} passed. {{failed}} failed.' }`
 
