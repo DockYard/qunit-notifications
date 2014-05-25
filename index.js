@@ -15,17 +15,21 @@ QUnit.notifications = function(options) {
 
   if (window.Notification) {
     QUnit.done(function(details) {
-      var title, _options = {};
+      var title;
+      var _options = {};
+
       if (window.Notification && QUnit.urlParams.notification === 'true') {
         if (details.failed === 0) {
           title = options.titles.passed;
           _options.body = renderBody(options.bodies.passed, details);
+
           if (options.icons.passed) {
             _options.icon = options.icons.passed;
           }
         } else {
           title = options.titles.failed;
           _options.body = renderBody(options.bodies.failed, details);
+
           if (options.icons.failed) {
             _options.icon = options.icons.failed;
           }
@@ -40,13 +44,16 @@ QUnit.notifications = function(options) {
     });
 
     $(window).on('load', function() {
-      var toolbar = $('#qunit-testrunner-toolbar')[0],
-      notification = document.createElement( "input" );
+      var toolbar = $('#qunit-testrunner-toolbar')[0];
+      var notification = document.createElement( "input" );
+
       notification.type = "checkbox";
       notification.id = "qunit-notification";
+
       if (QUnit.urlParams.notification === 'true') {
         notification.checked = true;
       }
+
       notification.addEventListener('click', function(event) {
         if (event.target.checked) {
           window.Notification.requestPermission(function(status) {
@@ -57,6 +64,7 @@ QUnit.notifications = function(options) {
         }
       }, false);
       toolbar.appendChild(notification);
+
       var label = document.createElement('label');
       label.setAttribute( "for", "qunit-notification" );
       label.setAttribute( "title", "Show notifications." );
