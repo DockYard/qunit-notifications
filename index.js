@@ -6,9 +6,12 @@ QUnit.notifications = function(options) {
   options.bodies  = options.bodies || { passed: '{{passed}} of {{total}} passed', failed: '{{passed}} passed. {{failed}} failed.' };
 
   var renderBody = function(body, details) {
-    ['passed', 'failed', 'total', 'runtime'].forEach(function(type) {
+    var strings = ['passed', 'failed', 'total', 'runtime']
+
+    for (var i = 0; i < strings.length; i++) {
+      var type = strings[i];
       body = body.replace("{{"+type+"}}", details[type]);
-    });
+    }
 
     return body;
   };
