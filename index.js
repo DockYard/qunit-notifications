@@ -1,9 +1,9 @@
 QUnit.notifications = function(options) {
-  options         = options || {};
-  options.icons   = options.icons || {};
+  options         = options         || {};
+  options.icons   = options.icons   || {};
   options.timeout = options.timeout || 4000;
-  options.titles  = options.titles || { passed: 'Passed!', failed: 'Failed!' };
-  options.bodies  = options.bodies || { passed: '{{passed}} of {{total}} passed', failed: '{{passed}} passed. {{failed}} failed.' };
+  options.titles  = options.titles  || { passed: 'Passed!', failed: 'Failed!' };
+  options.bodies  = options.bodies  || { passed: '{{passed}} of {{total}} passed', failed: '{{passed}} passed. {{failed}} failed.' };
 
   var renderBody = function(body, details) {
     ['passed', 'failed', 'total', 'runtime'].forEach(function(type) {
@@ -44,11 +44,11 @@ QUnit.notifications = function(options) {
     });
 
     $(window).on('load', function() {
-      var toolbar = $('#qunit-testrunner-toolbar')[0];
+      var toolbar      = $('#qunit-testrunner-toolbar')[0];
       var notification = document.createElement( "input" );
 
       notification.type = "checkbox";
-      notification.id = "qunit-notification";
+      notification.id   = "qunit-notification";
 
       if (QUnit.urlParams.notification === 'true') {
         notification.checked = true;
@@ -65,10 +65,10 @@ QUnit.notifications = function(options) {
       }, false);
       toolbar.appendChild(notification);
 
-      var label = document.createElement('label');
+      var label       = document.createElement('label');
+      label.innerHTML = "Notifications";
       label.setAttribute( "for", "qunit-notification" );
       label.setAttribute( "title", "Show notifications." );
-      label.innerHTML = "Notifications";
       toolbar.appendChild(label);
     });
   }
