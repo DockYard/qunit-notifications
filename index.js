@@ -43,7 +43,7 @@ QUnit.notifications = function(options) {
       }
     });
 
-    $(window).on('load', function() {
+    window.addEventListener('load', function() {
       var toolbar      = $('#qunit-testrunner-toolbar')[0];
       var notification = document.createElement( "input" );
 
@@ -70,6 +70,6 @@ QUnit.notifications = function(options) {
       label.setAttribute( "for", "qunit-notification" );
       label.setAttribute( "title", "Show notifications." );
       toolbar.appendChild(label);
-    });
+    }, false);
   }
 };
