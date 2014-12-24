@@ -44,7 +44,7 @@ QUnit.notifications = function(options) {
     });
 
     window.addEventListener('load', function() {
-      var toolbar      = $('#qunit-testrunner-toolbar')[0];
+      var toolbar      = document.getElementById('qunit-testrunner-toolbar');
       var notification = document.createElement( "input" );
 
       notification.type = "checkbox";
