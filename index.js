@@ -7,7 +7,7 @@ QUnit.notifications = function(options) {
 
   var renderBody = function(body, details) {
     ['passed', 'failed', 'total', 'runtime'].forEach(function(type) {
-      body = body.replace("{{"+type+"}}", details[type]);
+      body = body.replace('{{'+type+'}}', details[type]);
     });
 
     return body;
@@ -45,10 +45,10 @@ QUnit.notifications = function(options) {
 
     window.addEventListener('load', function() {
       var toolbar      = document.getElementById('qunit-testrunner-toolbar');
-      var notification = document.createElement( "input" );
+      var notification = document.createElement( 'input' );
 
-      notification.type = "checkbox";
-      notification.id   = "qunit-notifications";
+      notification.type = 'checkbox';
+      notification.id   = 'qunit-notifications';
 
       if (QUnit.urlParams.notifications) {
         notification.checked = true;
@@ -66,9 +66,9 @@ QUnit.notifications = function(options) {
       toolbar.appendChild(notification);
 
       var label       = document.createElement('label');
-      label.innerHTML = "Notifications";
-      label.setAttribute( "for", "qunit-notifications" );
-      label.setAttribute( "title", "Show notifications." );
+      label.innerHTML = 'Notifications';
+      label.setAttribute( 'for', 'qunit-notifications' );
+      label.setAttribute( 'title', 'Show notifications.' );
       toolbar.appendChild(label);
     }, false);
   }
