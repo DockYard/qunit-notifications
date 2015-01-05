@@ -17,8 +17,8 @@ QUnit.notifications = function(options) {
     QUnit.done(function(details) {
       var title;
       var _options = {};
-
-      if (window.Notification && QUnit.urlParams.notification === 'true') {
+      
+      if (window.Notification && QUnit.urlParams.notification === true) {
         if (details.failed === 0) {
           title = options.titles.passed;
           _options.body = renderBody(options.bodies.passed, details);
