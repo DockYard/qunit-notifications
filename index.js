@@ -51,7 +51,7 @@ QUnit.notifications = function(options) {
         notification.type = "checkbox";
         notification.id   = "qunit-notification";
 
-        if (QUnit.urlParams.notification === 'true') {
+        if (QUnit.urlParams.notification === true) {
           notification.checked = true;
         }
 
