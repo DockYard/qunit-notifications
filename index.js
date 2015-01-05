@@ -44,32 +44,38 @@ QUnit.notifications = function(options) {
     });
 
     window.addEventListener('load', function() {
-      var toolbar      = document.getElementById('qunit-testrunner-toolbar');
-      var notification = document.createElement( "input" );
+      setTimeout(function() {
+        var toolbar      = $('#qunit-testrunner-toolbar')[0];
+        var notification = document.createElement( "input" );
 
-      notification.type = "checkbox";
-      notification.id   = "qunit-notification";
+        notification.type = "checkbox";
+        notification.id   = "qunit-notification";
 
-      if (QUnit.urlParams.notification === 'true') {
-        notification.checked = true;
-      }
-
-      notification.addEventListener('click', function(event) {
-        if (event.target.checked) {
-          window.Notification.requestPermission(function(status) {
-            window.location = QUnit.url({notification: true});
-          });
-        } else {
-          window.location = QUnit.url({notification: undefined});
+        if (QUnit.urlParams.notification === 'true') {
+          notification.checked = true;
         }
-      }, false);
-      toolbar.appendChild(notification);
 
-      var label       = document.createElement('label');
-      label.innerHTML = "Notifications";
-      label.setAttribute( "for", "qunit-notification" );
-      label.setAttribute( "title", "Show notifications." );
-      toolbar.appendChild(label);
+        notification.addEventListener('click', function(event) {
+          if (event.target.checked) {
+            window.Notification.requestPermission(function(status) {
+              window.location = QUnit.url({notification: true});
+            });
+          } else {
+            window.location = QUnit.url({notification: undefined});
+          }
+        }, false);
+
+        try {
+          toolbar.appendChild(notification);
+
+          var label       = document.createElement('label');
+          label.innerHTML = "Notifications";
+          label.setAttribute( "for", "qunit-notification" );
+          label.setAttribute( "title", "Show notifications." );
+          toolbar.appendChild(label);
+        } catch (e) {
+        }
+      }, 20);
     }, false);
   }
 };
