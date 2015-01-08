@@ -100,7 +100,7 @@ Example:
 QUnit.notifications({
   bodies: {
     passed: '{{passed}} of {{total}} passed in {{runtime}}ms',
-    failed: '{{failed}} of {{total}} failed in {{{runtime}}ms'
+    failed: '{{failed}} of {{total}} failed in {{runtime}}ms'
   }
 });
 ```
