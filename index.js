@@ -18,7 +18,7 @@ QUnit.notifications = function(options) {
       var title;
       var _options = {};
 
-      if (window.Notification && QUnit.urlParams.notification === 'true') {
+      if (window.Notification && QUnit.urlParams.notifications) {
         if (details.failed === 0) {
           title = options.titles.passed;
           _options.body = renderBody(options.bodies.passed, details);
@@ -35,10 +35,10 @@ QUnit.notifications = function(options) {
           }
         }
 
-        var notification = new window.Notification(title, _options);
+        var notifications = new window.Notification(title, _options);
 
         setTimeout(function() {
-          notification.close();
+          notifications.close();
         }, options.timeout);
       }
     });
@@ -48,9 +48,9 @@ QUnit.notifications = function(options) {
       var notification = document.createElement( "input" );
 
       notification.type = "checkbox";
-      notification.id   = "qunit-notification";
+      notification.id   = "qunit-notifications";
 
-      if (QUnit.urlParams.notification === 'true') {
+      if (QUnit.urlParams.notifications) {
         notification.checked = true;
       }
 
@@ -67,7 +67,7 @@ QUnit.notifications = function(options) {
 
       var label       = document.createElement('label');
       label.innerHTML = "Notifications";
-      label.setAttribute( "for", "qunit-notification" );
+      label.setAttribute( "for", "qunit-notifications" );
       label.setAttribute( "title", "Show notifications." );
       toolbar.appendChild(label);
     }, false);
