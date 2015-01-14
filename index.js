@@ -57,10 +57,10 @@ QUnit.notifications = function(options) {
       notification.addEventListener('click', function(event) {
         if (event.target.checked) {
           window.Notification.requestPermission(function(status) {
-            window.location = QUnit.url({notification: true});
+            window.location = QUnit.url({notifications: true});
           });
         } else {
-          window.location = QUnit.url({notification: undefined});
+          window.location = QUnit.url({notifications: undefined});
         }
       }, false);
       toolbar.appendChild(notification);
