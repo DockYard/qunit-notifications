@@ -1,7 +1,6 @@
 {
   "name": "qunit-notifications",
   "main": "index.js",
-  "version": "0.0.4",
   "homepage": "https://github.com/dockyard/qunit-notifications",
   "authors": [
     "Brian Cardarella <bcardarella@gmail.com>"
