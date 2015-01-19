@@ -1,5 +1,8 @@
 # QUnit Notifications
 
+[![Build Status](https://img.shields.io/travis/dockyard/qunit-notifications/master.svg?style=flat-square)](https://travis-ci.org/dockyard/qunit-notifications)
+[![Code Climate](https://img.shields.io/codeclimate/github/dockyard/qunit-notifications.svg?style=flat-square)](https://codeclimate.com/github/dockyard/qunit-notifications)
+
 ## About
 
 Adds [Web Notification](http://www.w3.org/TR/notifications) support to your Qunit test suite
@@ -108,6 +111,7 @@ QUnit.notifications({
 ## Authors ##
 
 * [Brian Cardarella](http://twitter.com/bcardarella)
+* [Alex Mercier](https://www.linkedin.com/in/mercieralexandre)
 
 [We are very thankful for the many contributors](https://github.com/dockyard/qunit-notifications/graphs/contributors)
 

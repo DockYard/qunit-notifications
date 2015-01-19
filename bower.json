@@ -13,5 +13,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "qunit": "~1.16.0",
+    "sinon": "http://sinonjs.org/releases/sinon-1.12.1.js",
+    "rsvp": "~3.0.16"
+  }
 }
