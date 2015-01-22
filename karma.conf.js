@@ -1,12 +1,7 @@
 /*jshint browser:false, node:true */
 
 // Karma test runner configuration for all test suite
-// TEST_SUITE environment variable must be set (name of the directory containing the suite)
 // see http://karma-runner.github.io/0.12/config/configuration-file.html
-
-// if (!process.env.TEST_SUITE) {
-//   throw new Error("Environment variable TEST_SUITE is not set, aborting");
-// }
 
 module.exports = function(config) {
   "use strict";
