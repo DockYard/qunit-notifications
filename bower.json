@@ -15,7 +15,7 @@
     "tests"
   ],
   "devDependencies": {
-    "qunit": "~1.16.0",
+    "qunit": "~1.17.0",
     "sinon": "http://sinonjs.org/releases/sinon-1.12.1.js",
     "rsvp": "~3.0.16"
   }
