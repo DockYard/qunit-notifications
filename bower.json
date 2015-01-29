@@ -16,7 +16,7 @@
   ],
   "devDependencies": {
     "qunit": "~1.17.0",
-    "sinon": "http://sinonjs.org/releases/sinon-1.12.1.js",
+    "sinon": "http://sinonjs.org/releases/sinon-1.12.2.js",
     "rsvp": "~3.0.16"
   }
 }
