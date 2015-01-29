@@ -18,32 +18,26 @@ QUnit.notifications = function(options) {
     return body;
   };
 
-  function generateQueryString(isEnabled) {
+  function generateQueryString(params) {
     var key,
-        querystring = "?",
-        params = QUnit.urlParams;
+      querystring = "?";
 
-    if (isEnabled) {
-      querystring += "notifications=true&";
-    }
+    params = QUnit.extend(QUnit.extend({}, QUnit.urlParams), params);
 
     for (key in params) {
       if (params.hasOwnProperty(key)) {
         if (params[ key ] === undefined) {
           continue;
         }
-
         querystring += encodeURIComponent(key);
         if (params[ key ] !== true) {
           querystring += "=" + encodeURIComponent(params[ key ]);
         }
-
         querystring += "&";
       }
     }
-
     return location.protocol + "//" + location.host +
-      location.pathname + querystring.slice( 0, -1 );
+      location.pathname + querystring.slice(0, -1);
   }
 
   if (window.Notification) {
@@ -92,10 +86,10 @@ QUnit.notifications = function(options) {
       notification.addEventListener("click", function(event) {
         if (event.target.checked) {
           window.Notification.requestPermission(function() {
-            window.location = generateQueryString(true);
+            window.location = generateQueryString({ notifications: true });
           });
         } else {
-          window.location = generateQueryString(false);
+          window.location = generateQueryString({ notifications: undefined });
         }
       }, false);
       toolbar.appendChild(notification);
