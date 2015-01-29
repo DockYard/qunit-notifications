@@ -25,7 +25,7 @@
   });
 
   QUnit.test("Checking \"Notifications\" should enable QUnit Notifications", function(assert) {
-    assert.expect(5);
+    assert.expect(4);
     iframeDisabled.contentDocument.getElementById("qunit-notifications").click();
     assert.ok(
       iframeDisabled.contentWindow.Notification.requestPermission.calledOnce,
@@ -37,13 +37,9 @@
     iframeDisabled.addEventListener("load", function() {
       iframeDisabled.contentWindow.QUnit.done(function() {
         assert.strictEqual(
-          iframeDisabled.contentWindow.location.href,
-          iframeDisabled.contentWindow.QUnit.url({ notifications: true }),
-          "Page should be identical with QUnit.url({ mocks:true, notifications: true })"
-        );
-        assert.ok(
-          iframeDisabled.contentWindow.location.href.match(/\?mocks&notifications$/),
-          "Page URL should contain ?mocks&notifications"
+          iframeDisabled.contentWindow.location.search,
+          "?mocks&notifications",
+          "URL query string should be ?mocks&notifications"
         );
         assert.strictEqual(
           iframeDisabled.contentWindow.QUnit.urlParams.notifications,
@@ -61,7 +57,7 @@
   });
 
   QUnit.test("Unchecking \"Notifications\" should disable QUnit Notifications", function(assert) {
-    assert.expect(5);
+    assert.expect(4);
     iframeEnabled.contentDocument.getElementById("qunit-notifications").click();
     assert.ok(
       !iframeEnabled.contentWindow.Notification.requestPermission.called,
@@ -73,13 +69,9 @@
     iframeEnabled.addEventListener("load", function() {
       iframeEnabled.contentWindow.QUnit.done(function() {
         assert.strictEqual(
-          iframeEnabled.contentWindow.location.href,
-          iframeEnabled.contentWindow.QUnit.url({ notifications: undefined }),
-          "Page should be identical with QUnit.url({ mocks:true, notifications: undefined })"
-        );
-        assert.ok(
-          iframeDisabled.contentWindow.location.href.match(/\?mocks/),
-          "Page URL should not contain ?notifications"
+          iframeEnabled.contentWindow.location.search,
+          "?mocks",
+          "URL query string should be ?mocks"
         );
         assert.strictEqual(
           iframeEnabled.contentWindow.QUnit.urlParams.notifications,
