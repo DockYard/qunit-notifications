@@ -46,7 +46,7 @@ QUnit.notifications = function(options) {
           _options = {},
           notification;
 
-      if (window.Notification && QUnit.urlParams.notifications) {
+      if (window.Notification && QUnit.urlParams.notifications && document.hidden) {
         if (details.failed === 0) {
           title = options.titles.passed;
           _options.body = renderBody(options.bodies.passed, details);
