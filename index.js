@@ -78,7 +78,7 @@ QUnit.notifications = function(options) {
           disableCheckbox = function() {
             notification.checked = false;
             notification.disabled = true;
-            label.style.textDecoration = "line-through";
+            label.style.opacity = 0.5;
             label.title = notification.title = "Note: Notifications have been " +
               "disabled in this browser.";
           };
