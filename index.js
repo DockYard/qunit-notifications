@@ -74,30 +74,49 @@ QUnit.notifications = function(options) {
     QUnit.begin(function() {
       var toolbar      = document.getElementById( "qunit-testrunner-toolbar" ),
           notification = document.createElement( "input" ),
-          label        = document.createElement("label");
+          label        = document.createElement("label"),
+          disableCheckbox = function() {
+            notification.checked = false;
+            notification.disabled = true;
+            label.style.textDecoration = "line-through";
+            label.title = notification.title = "Note: Notifications have been " +
+              "disabled in this browser.";
+          };
 
       notification.type = "checkbox";
       notification.id   = "qunit-notifications";
 
-      if (QUnit.urlParams.notifications) {
+      label.innerHTML = "Notifications";
+      label.for = "qunit-notifications";
+      label.title = "Show notifications.";
+      if (window.Notification.permission === "denied") {
+        disableCheckbox();
+      } else if (QUnit.urlParams.notifications) {
         notification.checked = true;
       }
 
       notification.addEventListener("click", function(event) {
         if (event.target.checked) {
-          window.Notification.requestPermission(function() {
+          if (window.Notification.permission === "granted") {
             window.location = generateQueryString({ notifications: true });
-          });
+          } else if (window.Notification.permission === "denied") {
+            disableCheckbox();
+          } else {
+            window.Notification.requestPermission(function(permission) {
+              if (permission === "denied") {
+                disableCheckbox();
+              } else {
+                window.location = generateQueryString({ notifications: true });
+              }
+            });
+          }
         } else {
           window.location = generateQueryString({ notifications: undefined });
         }
       }, false);
-      toolbar.appendChild(notification);
 
-      label.innerHTML = "Notifications";
-      label.setAttribute( "for", "qunit-notifications" );
-      label.setAttribute( "title", "Show notifications." );
+      toolbar.appendChild(notification);
       toolbar.appendChild(label);
-    });
+   });
   }
 };
