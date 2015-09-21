@@ -72,8 +72,10 @@ QUnit.notifications = function( options ) {
     } );
 
     QUnit.begin( function() {
-      var toolbar      = document.getElementById( "qunit-testrunner-toolbar" ),
-          notification = document.createElement( "input" ),
+      var toolbar      = document.getElementById( "qunit-testrunner-toolbar" );
+      if ( !toolbar ) { return; }
+
+      var notification = document.createElement( "input" ),
           label        = document.createElement( "label" ),
           disableCheckbox = function() {
             notification.checked = false;
