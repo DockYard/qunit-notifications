@@ -1,4 +1,4 @@
-(function() {
+( function() {
   "use strict";
 
   var iframeGrant,
@@ -6,17 +6,17 @@
       iframeGranted,
       iframeDenied;
 
-  QUnit.module("Requirements", {
-    beforeEach: function(assert) {
-      iframeGrant = QUnit.addExampleSuite(assert, "stubs/empty.html?mocks=grant");
-      iframeDeny = QUnit.addExampleSuite(assert, "stubs/empty.html?mocks=deny");
-      iframeGranted = QUnit.addExampleSuite(assert, "stubs/empty.html?mocks=granted");
-      iframeDenied = QUnit.addExampleSuite(assert, "stubs/empty.html?mocks=denied");
+  QUnit.module( "Requirements", {
+    beforeEach: function( assert ) {
+      iframeGrant = QUnit.addExampleSuite( assert, "stubs/empty.html?mocks=grant" );
+      iframeDeny = QUnit.addExampleSuite( assert, "stubs/empty.html?mocks=deny" );
+      iframeGranted = QUnit.addExampleSuite( assert, "stubs/empty.html?mocks=granted" );
+      iframeDenied = QUnit.addExampleSuite( assert, "stubs/empty.html?mocks=denied" );
     }
-  });
+  } );
 
-  QUnit.test("Browser should support HTML5 notifications", function(assert) {
-    assert.expect(2);
+  QUnit.test( "Browser should support HTML5 notifications", function( assert ) {
+    assert.expect( 2 );
     assert.ok(
       "Notification" in iframeGrant.contentWindow,
       "window object should have a \"Notification\" member"
@@ -26,10 +26,10 @@
       "function",
       "window.Notification should be a function"
     );
-  });
+  } );
 
-  QUnit.test("Notification mock 'grant' should grant permission", function(assert) {
-    assert.expect(4);
+  QUnit.test( "Notification mock 'grant' should grant permission", function( assert ) {
+    assert.expect( 4 );
 
     assert.strictEqual(
       iframeGrant.contentWindow.Notification.permission,
@@ -40,11 +40,11 @@
     var permissionUpdated = false,
         newPermission = null;
 
-    iframeGrant.contentWindow.Notification.requestPermission(function(permission) {
+    iframeGrant.contentWindow.Notification.requestPermission( function( permission ) {
       permissionUpdated = true;
       newPermission = permission;
-    });
-    assert.ok(permissionUpdated,
+    } );
+    assert.ok( permissionUpdated,
       "Permission should be granted synchronously"
     );
     assert.strictEqual(
@@ -57,10 +57,10 @@
       "granted",
       "Notification.permission should be updated to \"granted\""
     );
-  });
+  } );
 
-  QUnit.test("Notification mock 'deny' should deny permission", function(assert) {
-    assert.expect(4);
+  QUnit.test( "Notification mock 'deny' should deny permission", function( assert ) {
+    assert.expect( 4 );
 
     assert.strictEqual(
       iframeDeny.contentWindow.Notification.permission,
@@ -71,11 +71,11 @@
     var permissionUpdated = false,
         newPermission = null;
 
-    iframeDeny.contentWindow.Notification.requestPermission(function(permission) {
+    iframeDeny.contentWindow.Notification.requestPermission( function( permission ) {
       permissionUpdated = true;
       newPermission = permission;
-    });
-    assert.ok(permissionUpdated,
+    } );
+    assert.ok( permissionUpdated,
       "Permission should be denied synchronously"
     );
     assert.strictEqual(
@@ -88,35 +88,35 @@
       "denied",
       "Notification.permission should be updated to \"denied\""
     );
-  });
+  } );
 
-  QUnit.test("Notification mock 'granted' should have permission granted", function(assert) {
-    assert.expect(1);
+  QUnit.test( "Notification mock 'granted' should have permission granted", function( assert ) {
+    assert.expect( 1 );
     assert.strictEqual(
       iframeGranted.contentWindow.Notification.permission,
       "granted",
       "Notification.permission should be set to \"granted\" by default"
     );
-  });
+  } );
 
-  QUnit.test("Notification mock 'denied' should have permission denied", function(assert) {
-    assert.expect(1);
+  QUnit.test( "Notification mock 'denied' should have permission denied", function( assert ) {
+    assert.expect( 1 );
     assert.strictEqual(
       iframeDenied.contentWindow.Notification.permission,
       "denied",
       "Notification.permission should be set to \"denied\" by default"
     );
-  });
+  } );
 
-  QUnit.test("Notification mock should hold a Promise object", function(assert) {
-    assert.expect(3);
+  QUnit.test( "Notification mock should hold a Promise object", function( assert ) {
+    assert.expect( 3 );
 
-    var notification1 = new iframeGrant.contentWindow.Notification("NOTIFICATION_TO_CLOSE_1"),
-        notification2 = new iframeGrant.contentWindow.Notification("NOTIFICATION_TO_CLOSE_2"),
+    var notification1 = new iframeGrant.contentWindow.Notification( "NOTIFICATION_TO_CLOSE_1" ),
+        notification2 = new iframeGrant.contentWindow.Notification( "NOTIFICATION_TO_CLOSE_2" ),
         done = assert.async(),
         doneAll = assert.async();
 
-    notification1.waitForClosed().then(function(result) {
+    notification1.waitForClosed().then( function( result ) {
       assert.ok(
         true,
         "notification.waitForClosed promise should be resolved once the notification is closed"
@@ -124,34 +124,34 @@
       assert.ok(
         new Date().getTime() - result  < 10,
         "notification.waitForClosed promise result should be the current time => +" +
-          (new Date().getTime() - result ) + "ms"
+          ( new Date().getTime() - result ) + "ms"
       );
       done();
-    });
+    } );
 
-    iframeGrant.contentWindow.Notification.waitForAllClosed().then(function() {
+    iframeGrant.contentWindow.Notification.waitForAllClosed().then( function() {
       assert.ok(
         true,
         "Notification.waitForAllClosed promise should be resolved one all notifications are closed"
       );
       iframeGrant.updateCodeCoverage();
       doneAll();
-    });
+    } );
 
-    setTimeout(notification1.close, 50);
-    setTimeout(notification2.close, 100);
-  });
+    setTimeout( notification1.close, 50 );
+    setTimeout( notification2.close, 100 );
+  } );
 
   /*jshint nonew: false */
-  QUnit.test("Sinon.JS should be able to spy notifications", function(assert) {
-    assert.expect(7);
+  QUnit.test( "Sinon.JS should be able to spy notifications", function( assert ) {
+    assert.expect( 7 );
 
     iframeGrant.contentWindow.Notification.requestPermission();
-    assert.strictEqual(iframeGrant.contentWindow.Notification.requestPermission.callCount, 1,
+    assert.strictEqual( iframeGrant.contentWindow.Notification.requestPermission.callCount, 1,
       "Notification.requestPermission should have been called once"
     );
 
-    iframeGrant.contentWindow.Notification("NOTIFICATION_WITHOUT_NEW");
+    iframeGrant.contentWindow.Notification( "NOTIFICATION_WITHOUT_NEW" );
     assert.ok(
       iframeGrant.contentWindow.Notification.calledOnce,
       "Notification should have been called once"
@@ -161,11 +161,11 @@
       "Notification should not have been called with \"new\" keyword"
     );
     assert.ok(
-      iframeGrant.contentWindow.Notification.calledWithExactly("NOTIFICATION_WITHOUT_NEW"),
+      iframeGrant.contentWindow.Notification.calledWithExactly( "NOTIFICATION_WITHOUT_NEW" ),
       "Notification should have been called with \"NOTIFICATION_WITHOUT_NEW\" argument"
     );
 
-    new iframeGrant.contentWindow.Notification("NOTIFICATION_WITH_NEW");
+    new iframeGrant.contentWindow.Notification( "NOTIFICATION_WITH_NEW" );
     assert.ok(
       iframeGrant.contentWindow.Notification.calledTwice,
       "Notification should have been called twice now"
@@ -175,9 +175,9 @@
       "Notification should have been called with \"new\" keyword"
     );
     assert.ok(
-      iframeGrant.contentWindow.Notification.calledWithExactly("NOTIFICATION_WITH_NEW"),
+      iframeGrant.contentWindow.Notification.calledWithExactly( "NOTIFICATION_WITH_NEW" ),
       "Notification should have been called with \"NOTIFICATION_WITH_NEW\" argument"
     );
-  });
+  } );
 
-})();
+} )();

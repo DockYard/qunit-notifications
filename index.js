@@ -1,4 +1,4 @@
-QUnit.notifications = function(options) {
+QUnit.notifications = function( options ) {
   "use strict";
 
   options         = options         || {};
@@ -10,71 +10,71 @@ QUnit.notifications = function(options) {
     failed: "{{passed}} passed. {{failed}} failed."
   };
 
-  var renderBody = function(body, details) {
-    [ "passed", "failed", "total", "runtime" ].forEach(function(type) {
-      body = body.replace("{{" + type + "}}", details[ type ]);
-    });
+  var renderBody = function( body, details ) {
+    [ "passed", "failed", "total", "runtime" ].forEach( function( type ) {
+      body = body.replace( "{{" + type + "}}", details[ type ] );
+    } );
 
     return body;
   };
 
-  function generateQueryString(params) {
+  function generateQueryString( params ) {
     var key,
       querystring = "?";
 
-    params = QUnit.extend(QUnit.extend({}, QUnit.urlParams), params);
+    params = QUnit.extend( QUnit.extend( {}, QUnit.urlParams ), params );
 
-    for (key in params) {
-      if (params.hasOwnProperty(key)) {
-        if (params[ key ] === undefined) {
+    for ( key in params ) {
+      if ( params.hasOwnProperty( key ) ) {
+        if ( params[ key ] === undefined ) {
           continue;
         }
-        querystring += encodeURIComponent(key);
-        if (params[ key ] !== true) {
-          querystring += "=" + encodeURIComponent(params[ key ]);
+        querystring += encodeURIComponent( key );
+        if ( params[ key ] !== true ) {
+          querystring += "=" + encodeURIComponent( params[ key ] );
         }
         querystring += "&";
       }
     }
     return location.protocol + "//" + location.host +
-      location.pathname + querystring.slice(0, -1);
+      location.pathname + querystring.slice( 0, -1 );
   }
 
-  if (window.Notification) {
-    QUnit.done(function(details) {
+  if ( window.Notification ) {
+    QUnit.done( function( details ) {
       var title,
           _options = {},
           notification;
 
-      if (window.Notification && QUnit.urlParams.notifications) {
-        if (details.failed === 0) {
+      if ( window.Notification && QUnit.urlParams.notifications ) {
+        if ( details.failed === 0 ) {
           title = options.titles.passed;
-          _options.body = renderBody(options.bodies.passed, details);
+          _options.body = renderBody( options.bodies.passed, details );
 
-          if (options.icons.passed) {
+          if ( options.icons.passed ) {
             _options.icon = options.icons.passed;
           }
         } else {
           title = options.titles.failed;
-          _options.body = renderBody(options.bodies.failed, details);
+          _options.body = renderBody( options.bodies.failed, details );
 
-          if (options.icons.failed) {
+          if ( options.icons.failed ) {
             _options.icon = options.icons.failed;
           }
         }
 
-        notification = new window.Notification(title, _options);
+        notification = new window.Notification( title, _options );
 
-        setTimeout(function() {
+        setTimeout( function() {
           notification.close();
-        }, options.timeout);
+        }, options.timeout );
       }
-    });
+    } );
 
-    QUnit.begin(function() {
+    QUnit.begin( function() {
       var toolbar      = document.getElementById( "qunit-testrunner-toolbar" ),
           notification = document.createElement( "input" ),
-          label        = document.createElement("label"),
+          label        = document.createElement( "label" ),
           disableCheckbox = function() {
             notification.checked = false;
             notification.disabled = true;
@@ -89,34 +89,34 @@ QUnit.notifications = function(options) {
       label.innerHTML = "Notifications";
       label.for = "qunit-notifications";
       label.title = "Show notifications.";
-      if (window.Notification.permission === "denied") {
+      if ( window.Notification.permission === "denied" ) {
         disableCheckbox();
-      } else if (QUnit.urlParams.notifications) {
+      } else if ( QUnit.urlParams.notifications ) {
         notification.checked = true;
       }
 
-      notification.addEventListener("click", function(event) {
-        if (event.target.checked) {
-          if (window.Notification.permission === "granted") {
-            window.location = generateQueryString({ notifications: true });
-          } else if (window.Notification.permission === "denied") {
+      notification.addEventListener( "click", function( event ) {
+        if ( event.target.checked ) {
+          if ( window.Notification.permission === "granted" ) {
+            window.location = generateQueryString( { notifications: true } );
+          } else if ( window.Notification.permission === "denied" ) {
             disableCheckbox();
           } else {
-            window.Notification.requestPermission(function(permission) {
-              if (permission === "denied") {
+            window.Notification.requestPermission( function( permission ) {
+              if ( permission === "denied" ) {
                 disableCheckbox();
               } else {
-                window.location = generateQueryString({ notifications: true });
+                window.location = generateQueryString( { notifications: true } );
               }
-            });
+            } );
           }
         } else {
-          window.location = generateQueryString({ notifications: undefined });
+          window.location = generateQueryString( { notifications: undefined } );
         }
-      }, false);
+      }, false );
 
-      toolbar.appendChild(notification);
-      toolbar.appendChild(label);
-   });
+      toolbar.appendChild( notification );
+      toolbar.appendChild( label );
+   } );
   }
 };
