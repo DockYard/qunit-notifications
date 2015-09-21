@@ -3,27 +3,29 @@
 // Karma test runner configuration for all test suite
 // see http://karma-runner.github.io/0.12/config/configuration-file.html
 
-module.exports = function(config) {
+module.exports = function( config ) {
   "use strict";
 
-  config.set({
+  config.set( {
     frameworks: [ "qunit" ],
     files: [
+
       // Parent test suite
       "bower_components/qunit/qunit/qunit.css",
       "node_modules/karma-coverage/node_modules/istanbul/lib/object-utils.js",
       "tests/qunit-helpers.js",
       "tests/*.test.js"
-    ].concat([
+    ].concat( [
+
       // Stubs
       "bower_components/qunit/qunit/qunit.js",
       "bower_components/sinon/index.js",
       "bower_components/rsvp/rsvp.min.js",
       "tests/stubs/*",
       "index.js"
-    ].map(function(pattern) {
+    ].map( function( pattern ) {
       return { pattern: pattern, watched: true, included: false, served: true };
-    })),
+    } ) ),
     browsers: [ "PhantomJS" ],
     reporters: [ process.env.CI ? "dots" : "progress", "coverage" ],
     preprocessors: {
@@ -53,5 +55,5 @@ module.exports = function(config) {
         ]
       }
     }
-  });
+  } );
 };
