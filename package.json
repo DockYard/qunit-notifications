@@ -1,6 +1,10 @@
 {
   "name": "qunit-notifications",
-  "private": true,
+  "description": "Notifications for QUnit test suites",
+  "author": "Brian Cardarella",
+  "license": "MIT",
+  "homepage": "https://github.com/dockyard/qunit-notifications",
+  "version": "0.1.0",
   "scripts": {
     "install": "bower install",
     "lint": "jshint --reporter node_modules/jshint-stylish/stylish.js .",
