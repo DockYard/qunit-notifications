@@ -6,7 +6,6 @@
   "homepage": "https://github.com/dockyard/qunit-notifications",
   "version": "0.1.0",
   "scripts": {
-    "install": "bower install",
     "lint": "jshint --reporter node_modules/jshint-stylish/stylish.js .",
     "codestyle": "jscs .",
     "karma": "./node_modules/karma/bin/karma start",
