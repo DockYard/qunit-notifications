@@ -4,7 +4,7 @@
   "author": "Brian Cardarella",
   "license": "MIT",
   "homepage": "https://github.com/dockyard/qunit-notifications",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "lint": "jshint --reporter node_modules/jshint-stylish/stylish.js .",
     "codestyle": "jscs .",
