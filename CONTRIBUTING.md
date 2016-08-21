@@ -1,65 +1,60 @@
-# Contribution Guidelines #
+# How to contribute
 
-## Submitting a new issue ##
+## Improve documentation
 
-If you want to ensure that your issue gets fixed *fast* you should
-attempt to reproduce the issue in an isolated example application that
-you can share.
+We are always looking to improve our documentation. If at some moment you are
+reading the documentation and something is not clear, or you can't find what you
+are looking for, then please open an issue with the repository. This gives us a
+chance to answer your question and to improve the documentation if needed.
 
-## Making a pull request ##
+Pull requests correcting spelling or grammar mistakes are always welcome.
 
-If you'd like to submit a pull request please adhere to the following:
+## Found a bug?
 
-1. Your code *must* be tested. Please TDD your code!
-2. No single-character variables
-3. Two-spaces instead of tabs
+Please try to answer at least the following questions when reporting a bug:
 
-Please note that you must adhere to each of the aforementioned rules.
-Failure to do so will result in an immediate closing of the pull
-request. If you update and rebase the pull request to follow the
-guidelines your pull request will be re-opened and considered for
-inclusion.
+ - Which version of the project did you use when you noticed the bug?
+ - How do you reproduce the error condition?
+ - What happened that you think is a bug?
+ - What should it do instead?
 
-## Testing ##
+It would really help the maintainers if you could provide a reduced test case
+that reproduces the error condition.
 
-Tests are written using [QUnit](http://qunitjs.com/), and run by [http://karma-runner.github.io/0.12/index.html](Karma).
-Code coverage analysis is collected by [Istanbul](http://gotwarlost.github.io/istanbul/).
-Static code analysis is performed by [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/).
-Continuouse Integration testing is powered by [Travis CI](https://travis-ci.org/dockyard/qunit-notifications)
-and [Code Climate](https://codeclimate.com/github/dockyard/qunit-notifications).
+## Have a feature request?
 
-### Getting started ###
+Please provide some thoughful commentary and code samples on what this feature
+should do and why it should be added (your use case). The minimal questions you
+should answer when submitting a feature request should be:
 
-1. Clone this repository:
+ - What will it allow you to do that you can't do today?
+ - Why do you need this feature and how will it benefit other users?
+ - Are there any drawbacks to this feature?
 
-      git clone <repository url>
+## Submitting a pull-request?
 
-2. Install dependencies:
+Here are some things that will increase the chance that your pull-request will
+get accepted:
+ - Did you confirm this fix/feature is something that is needed?
+ - Did you write tests, preferably in a test driven style?
+ - Did you add documentation for the changes you made?
+ - Did you follow our [styleguide](https://github.com/dockyard/styleguides)?
 
-      npm install
+If your pull-request addresses an issue then please add the corresponding
+issue's number to the description of your pull-request.
 
-3. Run tests locally:
+# How to work with this project locally
 
-      npm test
+## Installation
 
-This command runs all the following:
-  - `npm run lint` - check basic code style rules
-  - `npm run codestyle` - check more advanced code style rules
-  - `npm run karma-ci` - run all unit tests in PhantomJS - a headless browser -
-     and generate a code coverage report
-  - `npm run report` - display a quick summary of the code coverage. Complete
-     code coverage report is available in `tests/coverage/index.html`.
+First clone this repository:
 
-### Advanced testing options ###
+```sh
+git clone https://github.com/DockYard/qunit-notifications.git
+```
 
-To develop, you can either:
-  - Run `npm run karma` in your console and check results from the console
-    directly or visit [http://localhost:9876/]
-  - or, open `file://...path/to/your/repo/tests/index.html`
+<!-- Add further details on how to install the project here -->
 
-Also, you can troubleshoot PhantomJS errors by starting Karma with
-`PhantomJS_debug` as a browser:
+## Running tests
 
-    npm run karma -- --browser PhantomJS_debug
-
-Then, you can access the remote debugger at http://localhost:9000/.
+<!-- Tell the user how to run the tests of your project -->
