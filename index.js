@@ -75,6 +75,11 @@ QUnit.notifications = function( options ) {
       var toolbar      = document.getElementById( "qunit-testrunner-toolbar" );
       if ( !toolbar ) { return; }
 
+      var checkboxContainer = toolbar.querySelector(".qunit-url-config");
+      if (!checkboxContainer) { // qunit < 2
+        checkboxContainer = toolbar;
+      }
+
       var notification = document.createElement( "input" ),
           label        = document.createElement( "label" ),
           disableCheckbox = function() {
@@ -117,8 +122,7 @@ QUnit.notifications = function( options ) {
         }
       }, false );
 
-      toolbar.appendChild( notification );
-      toolbar.appendChild( label );
+      checkboxContainer.appendChild( label );
    } );
   }
 };
