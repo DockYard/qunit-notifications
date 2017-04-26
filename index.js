@@ -91,6 +91,8 @@ QUnit.notifications = function( options ) {
       label.innerHTML = "Notifications";
       label.for = "qunit-notifications";
       label.title = "Show notifications.";
+      label.insertBefore(notification, label.firstChild);
+
       if ( window.Notification.permission === "denied" ) {
         disableCheckbox();
       } else if ( QUnit.urlParams.notifications ) {
@@ -117,7 +119,6 @@ QUnit.notifications = function( options ) {
         }
       }, false );
 
-      toolbar.appendChild( notification );
       toolbar.appendChild( label );
    } );
   }
